@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #f7f7f7;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+.ellipsis-anim span {
+  opacity: 0;
+  -webkit-animation: ellipsis-dot 1s infinite;
+  animation: ellipsis-dot 1s infinite;
+}
+
+.ellipsis-anim span:nth-child(1) {
+  -webkit-animation-delay: 0.0s;
+  animation-delay: 0.0s;
+}
+.ellipsis-anim span:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+.ellipsis-anim span:nth-child(3) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+@-webkit-keyframes ellipsis-dot {
+    0% { opacity: 0; }
+   50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes ellipsis-dot {
+    0% { opacity: 0; }
+   50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+
+@keyframes quiet {
+  25%{
+    transform: scaleY(.6);
+  }
+  50%{
+    transform: scaleY(.4);
+  }
+  75%{
+    transform: scaleY(.8);
+  }
+}
+
+@keyframes normal {
+  25%{
+    transform: scaleY(1);
+  }
+  50%{
+    transform: scaleY(.4);
+  }
+  75%{
+    transform: scaleY(.6);
+  }
+}
+@keyframes loud {
+  25%{
+    transform: scaleY(1);
+  }
+  50%{
+    transform: scaleY(.4);
+  }
+  75%{
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes stop {
+  25%{
+    transform: scaleY(.6);
+  }
+  50%{
+    transform: scaleY(.5);
+  }
+  75%{
+    transform: scaleY(.4);
+  }
+}
+
+.boxContainer{
+  display: flex;
+  justify-content: space-between;
+  height: 41px;
+  --boxSize: 2.5px;
+  --gutter: 6px;
+  width: calc((var(--boxSize) + var(--gutter)) * 5);
+}
+
+.box{
+  transform: scaleY(.8);
+  height: 100%;
+  width: var(--boxSize);
+  background: #eeeeee;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  border-radius: 50px;
+}
+
+.boxStationary{
+  transform: scaleY(.4);
+  height: 100%;
+  width: var(--boxSize);
+  background: #eeeeee;
+  animation-duration: .5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  border-radius: 50px;
+}
+
+.box1{
+  animation-name: quiet;
+}
+
+.box2{
+  animation-name: normal;
+}
+
+.box3{
+  animation-name: quiet;
+}
+
+.box4{
+  animation-name: loud;
+}
+
+.box5{
+  animation-name: quiet;
+}
+
+.boxStopped {
+  animation-name: stop;
+}
