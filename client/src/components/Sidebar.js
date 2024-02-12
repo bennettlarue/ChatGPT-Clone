@@ -25,7 +25,7 @@ const Sidebar = () => {
     }, []);
 
     return (
-        <div className="bg-lightBlack h-screen w-72 text-white shadow-lg transition-all duration-400 border-r-4 border-blueBlack">
+        <div className="p-1 bg-lightBlack min-h-screen w-72 text-white shadow-lg transition-all duration-400 border-r-4 border-blueBlack">
             <div>
                 <div className="bg-modernGray m-3 rounded-xl p-3 flex justify-center">
                     <button
