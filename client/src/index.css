@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 html {
   background-color: #f7f7f7;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -141,4 +143,18 @@ html {
 
 .boxStopped {
   animation-name: stop;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 10;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.sidebar-visible {
+  transform: translateX(0);
 }
