@@ -83,7 +83,7 @@ const NewConversation = () => {
 
     return (
         <div className="grid grid-row6">
-            <div className="flex justify-center py-4 bg-blueBlack text-xl text-softWhite shadow-lg font-bold">
+            <div className="flex justify-center py-4 text-xl text-blueBlack font-bold">
                 New Conversation
             </div>
 
