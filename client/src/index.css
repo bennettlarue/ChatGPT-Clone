@@ -158,3 +158,17 @@ html {
 .sidebar-visible {
   transform: translateX(0);
 }
+
+/* CSS - Add these styles */
+.newMessage { 
+  opacity: 0;      /* Starts invisible */
+  animation: fadeIn 1s ease-in forwards; /* Animation controls fade in effect */
+}
+
+@keyframes fadeIn {
+  0% { 
+    opacity: 0; 
+    transform: translateY(-10px); /* Optional: Offset slightly from above */
+  }
+  100% { opacity: 1; transform: translateY(0); }
+}
