@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/globalContext";
 
-const Sidebar = () => {
+const Sidebar = ({ toggleSidebar }) => {
     // Use global conversation useState
     const { currentConversation, setCurrentConversation } =
         useContext(GlobalContext);
@@ -25,37 +25,36 @@ const Sidebar = () => {
     }, []);
 
     return (
-        <div className="p-1 bg-lightBlack min-h-screen w-72 text-white shadow-lg transition-all duration-400 border-r-4 border-blueBlack">
+        <div className=" bg-darkerBlueBlack min-h-screen w-72 text-white transition-all duration-400">
             <div>
-                <div className="bg-modernGray m-3 rounded-xl p-3 flex justify-center">
-                    <button
-                        onClick={() => {
-                            setCurrentConversation({});
-                            console.log(currentConversation);
-                        }}
-                    >
-                        Create New
-                    </button>
-                </div>
+                <button
+                    onClick={() => {
+                        setCurrentConversation({});
+                        toggleSidebar();
+                        console.log(currentConversation);
+                    }}
+                >
+                    <div className="font-bold m-3 rounded-xl p-3 flex justify-center text-black w-64 btn-hover color-1">
+                        Create New +
+                    </div>
+                </button>
 
                 <div>
                     {conversationList.map((conversation) => (
                         <div
                             className={
                                 conversation._id === currentConversation._id
-                                    ? "ml-2 mt-1 p-2 bg-cream text-black rounded-l-lg "
-                                    : "ml-2 mt-1 p-2 transition-all duration-400 hover:bg-lightBlackHover rounded-l-lg"
+                                    ? "m-2 mt-1 p-2 bg-cream text-black rounded-lg cursor-pointer"
+                                    : "m-2 mt-1 p-2 transition-all duration-400 hover:bg-lightBlack rounded-lg cursor-pointer"
                             }
+                            onClick={() => {
+                                setCurrentConversation(conversation);
+                                toggleSidebar();
+                                console.log(currentConversation);
+                                fetchConversations();
+                            }}
                         >
-                            <button
-                                key={conversation._id}
-                                className="flex"
-                                onClick={() => {
-                                    setCurrentConversation(conversation);
-                                    console.log(currentConversation);
-                                    fetchConversations();
-                                }}
-                            >
+                            <div key={conversation._id} className="flex">
                                 <img
                                     src={
                                         currentConversation._id ===
@@ -68,7 +67,7 @@ const Sidebar = () => {
                                 />
 
                                 {conversation.name}
-                            </button>
+                            </div>
                         </div>
                     ))}
                 </div>

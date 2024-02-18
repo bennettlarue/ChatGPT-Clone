@@ -83,8 +83,20 @@ const NewConversation = () => {
 
     return (
         <div className="grid grid-row6">
-            <div className="flex justify-center py-4 text-xl text-blueBlack font-bold">
-                New Conversation
+            <div className="flex justify-center text-blueBlack">
+                <div
+                    className="mt-10 mb-5 hover:drop-shadow-lg"
+                    style={{
+                        fontSize: "50px",
+                        background:
+                            "radial-gradient(circle at 10% 20%, rgb(50, 172, 109) 21%, rgb(209, 251, 155) 100.2%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        fontWeight: "bold",
+                    }}
+                >
+                    New Conversation
+                </div>
             </div>
 
             <form onSubmit={handleSubmit} className="mt-10">
@@ -101,7 +113,7 @@ const NewConversation = () => {
                 <div className="flex justify-center">
                     <button
                         type="submit"
-                        className="bg-gptGreen p-4 rounded-full text-white font-semibold shadow-md text-xl my-6"
+                        className=" p-3.5 rounded-full text-black font-bold shadow-md text-lg my-6 btn-hover color-1"
                     >
                         Start Chatting
                     </button>
@@ -113,7 +125,7 @@ const NewConversation = () => {
                     . . . or choose a chat personality first!
                 </div>
 
-                <div className="grid grid-rows-4 grid-cols-1 gap-5 px-7">
+                <div className="grid gap-5 px-7">
                     {personalities.map((personality) => (
                         <button
                             key={personality.name}
