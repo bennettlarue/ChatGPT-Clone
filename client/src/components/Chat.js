@@ -19,7 +19,6 @@ const Chat = () => {
 
     useEffect(() => {
         if (currentConversation) setMessages(currentConversation.messages);
-        //scrollToBottom();
     }, [currentConversation]);
 
     useEffect(() => {
@@ -89,7 +88,7 @@ const Chat = () => {
     }
 
     return (
-        <div className="grid grid-rows-6 h-screen" onClick={scrollToBottom}>
+        <div className="grid grid-rows-6 h-screen">
             <div className="row-span-5 overflow-y-scroll bg-lightGrey chat-container">
                 {!messages || messages.length === 0 ? (
                     <div className="flex h-full">
@@ -116,9 +115,9 @@ const Chat = () => {
                 <div ref={bottomEl}></div>
             </div>
             {/* ---------------------------------------------------------------------------------------------------------------- */}
-            <div className="bg-cream shadow-2xl p-3 pb-16">
+            <div className="bg-blueBlack px-3 pb-16">
                 <form onSubmit={handleSubmit}>
-                    <div className="bg-softWhite max-w-3xl p-3 rounded-xl flex mx-auto shadow-md mt-2">
+                    <div className="bg-blueBlack max-w-3xl p-3 rounded-xl flex mx-auto shadow-md mt-2  border-2 border-lightBlackHover">
                         {isLoading ? (
                             <div className="flex w-full h-full text-modernGray py-1">
                                 Thinking
@@ -134,15 +133,18 @@ const Chat = () => {
                                     type="text"
                                     name="message"
                                     placeholder={"Send a message"}
-                                    className={`w-full h-8 bg-transparent border border-transparent placeholder-modernGray focus:outline-none
+                                    className={`w-full h-8 bg-blueBlack border border-transparent text-softWhite placeholder-lightBlackHover placeholder:font-semibold focus:outline-none
                             `}
                                     disabled={isLoading} // Disable input while loading
                                 />
                                 <button
                                     type="submit"
-                                    className="h-8 border border-transparent placeholder-modernGray focus:outline-none"
+                                    className="border border-transparent placeholder-modernGray focus:outline-none ml-5 w-9 p-1.5 h-full rounded-lg btn-hover color-1"
                                 >
-                                    📨
+                                    <img
+                                        src="https://i.imgur.com/aBHkKTI.png"
+                                        alt="send"
+                                    ></img>
                                 </button>
                             </div>
                         )}
