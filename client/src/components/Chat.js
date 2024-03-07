@@ -4,31 +4,46 @@ import NewConversation from "./NewConversation";
 import UserMessage from "./messageBoxes/UserMessage";
 import BotMessage from "./messageBoxes/BotMessage";
 import { getBotReply, updateConversation } from "../utilities/request";
+import MessageForm from "./MessageForm";
 
+/**
+ * Chat component represents a chat interface where users can send and receive messages.
+ *
+ * @returns {JSX.Element} The rendered Chat component.
+ */
 const Chat = () => {
     // Contexts and UseStates
 
-    const { currentConversation, setCurrentConversation } =
-        useContext(GlobalContext);
+    // Get the current conversation from the global context
+    const { currentConversation } = useContext(GlobalContext);
+
+    // State for storing messages of the current conversation
     const [messages, setMessages] = useState([]);
-    const [isLoading, setIsLoading] = useState(false); // Add the isLoading state
+
+    // State for tracking loading status
+    const [isLoading, setIsLoading] = useState(false);
+
+    // State for triggering scroll to the bottom of the chat
     const [triggerScroll, setTriggerScroll] = useState(false);
-    const [isTyping, setIsTyping] = useState(false);
 
     // Use effects
 
+    // Update messages state when currentConversation changes
     useEffect(() => {
         if (currentConversation) setMessages(currentConversation.messages);
     }, [currentConversation]);
 
+    // Scroll to the latest bot message when messages state changes
     useEffect(() => {
-        scrollToLatestBotMessage(); // Scroll to the most recent bot message
+        scrollToLatestBotMessage();
     }, [messages]);
 
+    // Reference to the bottom of the chat
     const bottomEl = useRef(null);
+
+    // Function to scroll to the bottom of the chat
     const scrollToBottom = () => {
         if (bottomEl.current) {
-            // Check if element exists
             bottomEl.current.scrollIntoView({
                 behavior: "smooth",
                 block: "end",
@@ -36,12 +51,12 @@ const Chat = () => {
         }
     };
 
+    // Scroll to the bottom of the chat when triggerScroll state changes
     useEffect(() => {
         scrollToBottom();
     }, [triggerScroll]);
 
-    // Functions
-
+    // Function to scroll to the latest bot message
     const scrollToLatestBotMessage = () => {
         const latestBotMessageEl = document.querySelector(
             ".latest-bot-message"
@@ -57,6 +72,7 @@ const Chat = () => {
         }
     };
 
+    // Function to handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -77,16 +93,17 @@ const Chat = () => {
         updateConversation(updatedMessages, currentConversation);
 
         setIsLoading(false);
-        setIsTyping(true);
 
         setMessages(updatedMessages);
     };
 
+    // If there's no current conversation, render NewConversation component
     if (JSON.stringify(currentConversation) === "{}") {
         console.log(currentConversation);
         return <NewConversation />;
     }
 
+    // Render the chat interface
     return (
         <div className="grid grid-rows-6 h-screen">
             <div className="row-span-5 overflow-y-scroll bg-lightGrey chat-container">
@@ -114,42 +131,8 @@ const Chat = () => {
 
                 <div ref={bottomEl}></div>
             </div>
-            {/* ---------------------------------------------------------------------------------------------------------------- */}
             <div className="bg-blueBlack px-3 pb-16">
-                <form onSubmit={handleSubmit}>
-                    <div className="bg-blueBlack max-w-3xl p-3 rounded-xl flex mx-auto shadow-md mt-2  border-2 border-lightBlackHover">
-                        {isLoading ? (
-                            <div className="flex w-full h-full text-modernGray py-1">
-                                Thinking
-                                <span class="ellipsis-anim">
-                                    <span>.</span>
-                                    <span>.</span>
-                                    <span>.</span>
-                                </span>
-                            </div>
-                        ) : (
-                            <div className="flex w-full h-full">
-                                <input
-                                    type="text"
-                                    name="message"
-                                    placeholder={"Send a message"}
-                                    className={`w-full h-8 bg-blueBlack border border-transparent text-softWhite placeholder-lightBlackHover placeholder:font-semibold focus:outline-none
-                            `}
-                                    disabled={isLoading} // Disable input while loading
-                                />
-                                <button
-                                    type="submit"
-                                    className="border border-transparent placeholder-modernGray focus:outline-none ml-5 w-9 p-1.5 h-full rounded-lg btn-hover color-1"
-                                >
-                                    <img
-                                        src="https://i.imgur.com/aBHkKTI.png"
-                                        alt="send"
-                                    ></img>
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </form>
+                <MessageForm isLoading={isLoading} onSubmit={handleSubmit} />
             </div>
         </div>
     );

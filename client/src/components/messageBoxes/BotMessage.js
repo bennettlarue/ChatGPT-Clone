@@ -7,6 +7,17 @@ function replaceNumberedListIndicators(text) {
     return text.replace(/^\d+\.\s+/gm, (match) => match.replace(".", ":"));
 }
 
+/**
+ * Represents a component for displaying a bot message.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.message - The message object to be displayed.
+ * @param {Array} props.messages - The array of all messages.
+ * @param {number} props.index - The index of the current message.
+ * @returns {JSX.Element} The JSX element representing the bot message.
+ */
+
 const BotMessage = ({ message, messages, index }) => {
     console.log(message);
 
@@ -43,7 +54,7 @@ const BotMessage = ({ message, messages, index }) => {
                         index === messages.length - 1
                             ? "newMessage latest-bot-message"
                             : ""
-                    }`} // Add 'latest-bot-message' class if it's the most recent
+                    }`}
                     style={{ whiteSpace: "pre-wrap" }}
                 >
                     <ReactMarkdown
