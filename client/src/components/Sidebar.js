@@ -1,10 +1,19 @@
 import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/globalContext";
 
-const Sidebar = ({ toggleSidebar }) => {
+/**
+ * Sidebar component that displays a list of conversations and allows creating new conversations.
+ * @param {Object} props - The component props.
+ * @param {Function} props.toggleSidebar - The function to toggle the sidebar visibility.
+ * @returns {JSX.Element} The rendered Sidebar component.
+ */
+const Sidebar = ({ toggleSidebar, isSidebarVisible }) => {
     // Use global conversation useState
-    const { currentConversation, setCurrentConversation } =
-        useContext(GlobalContext);
+    const {
+        currentConversation,
+        setCurrentConversation,
+        refreshConversations,
+    } = useContext(GlobalContext);
 
     const [conversationList, setConversationList] = useState([]);
 
@@ -21,17 +30,42 @@ const Sidebar = ({ toggleSidebar }) => {
     };
 
     useEffect(() => {
+        // Define the event listener
+        const handleResize = () => {
+            const width = window.innerWidth;
+
+            // Check if the width is within the range of Tailwind's "sm" and "md" breakpoints
+            if (isSidebarVisible && width >= 640 && width <= 767) {
+                toggleSidebar();
+            }
+        };
+
+        // Add the event listener
+        window.addEventListener("resize", handleResize);
+
+        // Clean up the event listener on unmount
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [toggleSidebar, isSidebarVisible]);
+
+    useEffect(() => {
+        // Fetch conversations when the component mounts
         fetchConversations();
-    }, []);
+    }, [refreshConversations]);
 
     return (
         <div className=" bg-darkerBlueBlack min-h-screen w-72 text-white transition-all duration-400">
             <div>
                 <button
                     onClick={() => {
+                        // Reset current conversation and toggle sidebar visibility
                         setCurrentConversation({});
-                        toggleSidebar();
-                        console.log(currentConversation);
+                        const width = window.innerWidth;
+                        // Check if the width is within the range of Tailwind's "sm" and "md" breakpoints
+                        if (isSidebarVisible && width >= 640 && width <= 767) {
+                            toggleSidebar();
+                        }
                     }}
                 >
                     <div className="font-bold m-3 rounded-xl p-3 flex justify-center text-black w-64 btn-hover color-1">
@@ -48,9 +82,17 @@ const Sidebar = ({ toggleSidebar }) => {
                                     : "m-2 mt-1 p-2 transition-all duration-400 hover:bg-lightBlack rounded-lg cursor-pointer"
                             }
                             onClick={() => {
+                                // Set current conversation and toggle sidebar visibility
                                 setCurrentConversation(conversation);
-                                toggleSidebar();
-                                console.log(currentConversation);
+                                const width = window.innerWidth;
+                                // Check if the width is within the range of Tailwind's "sm" and "md" breakpoints
+                                if (
+                                    isSidebarVisible &&
+                                    width >= 640 &&
+                                    width <= 767
+                                ) {
+                                    toggleSidebar();
+                                }
                                 fetchConversations();
                             }}
                         >
