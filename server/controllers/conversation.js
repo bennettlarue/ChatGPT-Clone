@@ -1,5 +1,6 @@
 const Conversation = require("../models/conversation");
 
+// Create a new conversation
 const createConversation = async (req, res) => {
     const conversation = req.body;
     const newConversation = Conversation(conversation);
@@ -12,6 +13,7 @@ const createConversation = async (req, res) => {
     }
 };
 
+// Get all conversations
 const getAllConversations = async (req, res) => {
     try {
         const conversations = await Conversation.find();
@@ -22,6 +24,7 @@ const getAllConversations = async (req, res) => {
     }
 };
 
+// Update a conversation
 const updateConversation = async (req, res) => {
     const conversationId = req.params.id;
     const updatedConversation = req.body;
@@ -44,6 +47,7 @@ const updateConversation = async (req, res) => {
     }
 };
 
+// Test route
 const testRoute = async (req, res) => {
     res.send("Hello from test route!");
 };

@@ -1,5 +1,6 @@
 const axios = require("axios");
 
+// Function to send a chat message to the OpenAI API
 const sendChat = async (req, res) => {
     const apiUrl = "https://api.openai.com/v1/chat/completions";
 
@@ -29,6 +30,7 @@ const sendChat = async (req, res) => {
     }
 };
 
+// Function to find keywords or phrases in a chat message
 const findKeyWords = async (req, res) => {
     const apiUrl = "https://api.openai.com/v1/chat/completions";
 
@@ -60,10 +62,6 @@ const findKeyWords = async (req, res) => {
         );
 
         const botReply = response.data.choices[0].message;
-
-        console.log("Finding key words...");
-
-        console.log(botReply);
 
         res.send(JSON.parse(botReply.content));
     } catch (error) {
