@@ -22,7 +22,7 @@ app.get("/", (req, res) => res.send("Hello from homepage!"));
  *
  * @type {string}
  */
-const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.ypc1vyt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const CONNECTION_URL = process.env.MONGO_URI;
 mongoose
     .connect(CONNECTION_URL, {
         useNewUrlParser: true,
