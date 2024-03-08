@@ -32,7 +32,6 @@ const NewConversation = () => {
             name: "Dungeon Master",
             description:
                 "Let Chat GPT guide you through a thrilling text adventure!",
-            color: "color-2",
             hoverColor: "hover:bg-red-300",
             image: "https://i.imgur.com/GYHerzv.png",
             personalityText:
@@ -43,7 +42,6 @@ const NewConversation = () => {
             name: "Writing Instructor",
             description:
                 "A preset built around workshopping, critiquing, and improving academic papers.",
-            color: "color-3",
             hoverColor: "hover:bg-blue-300",
             image: "https://i.imgur.com/lZjdQVi.png",
             personalityText:
@@ -53,7 +51,6 @@ const NewConversation = () => {
         {
             name: "Programmer",
             description: "A preset built around reading and writing code.",
-            color: "color-4",
             hoverColor: "hover:bg-orange-300",
             image: "https://i.imgur.com/Vi62QDN.png",
             personalityText: "You are a software developer.",
@@ -148,7 +145,7 @@ const NewConversation = () => {
                             className={`transition-all duration-100 rounded-lg shadow-md px-5 py-3 ${
                                 personalityString ===
                                 personality.personalityText
-                                    ? `btn ${personality.color} ring-2 ring-softWhite`
+                                    ? `btn color-1 ring-2 ring-softWhite`
                                     : `btn-hover color-2`
                             }`}
                         >
