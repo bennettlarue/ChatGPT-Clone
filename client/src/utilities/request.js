@@ -1,3 +1,4 @@
+// Function to send messages to the chatbot and receive a reply
 export const getBotReply = async (messages) => {
     try {
         const response = await fetch("http://localhost:3001/chat", {
@@ -23,6 +24,7 @@ export const getBotReply = async (messages) => {
     }
 };
 
+// Function to find keywords in a JSON data object
 export const getKeyWords = async (jsonData) => {
     try {
         const response = await fetch(
@@ -47,6 +49,7 @@ export const getKeyWords = async (jsonData) => {
     }
 };
 
+// Function to update a conversation with new messages
 export const updateConversation = async (messages, currentConversation) => {
     try {
         const response = await fetch(

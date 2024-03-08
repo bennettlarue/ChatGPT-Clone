@@ -15,8 +15,14 @@ app.use("/chat", chatRoutes);
 
 app.get("/", (req, res) => res.send("Hello from homepage!"));
 
-const CONNECTION_URL =
-    "mongodb+srv://begen81:GJmJ9mlILlD0g6kT@cluster0.ypc1vyt.mongodb.net/?retryWrites=true&w=majority";
+/**
+ * MongoDB connection URL.
+ *
+ * This URL is used to connect to the MongoDB database. It includes the necessary credentials and connection options.
+ *
+ * @type {string}
+ */
+const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.ypc1vyt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 mongoose
     .connect(CONNECTION_URL, {
         useNewUrlParser: true,
@@ -34,7 +40,3 @@ const port = 3001;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-
-// mongodb+srv://Ben:GJmJ9mlILlD0g6kT@cluster0.n8mfajy.mongodb.net/?retryWrites=true&w=majority
-// MONGO USER : begen81
-// MONGO PASS : ioYsDTIgqHLpX1eL
