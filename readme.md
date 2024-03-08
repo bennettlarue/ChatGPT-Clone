@@ -37,7 +37,7 @@ To run this project locally, follow these steps:
 2. Install the required dependencies by running `npm install` in both the `client` and `server` directories.
 3. Set up your MongoDB database and obtain an OpenAI API key.
 4. In the `server` directory, create a `.env` file and add the following environment variables:
-  - `MONGO_USER={your MongoDB connection string}`
+  - `MONGO_URI={your MongoDB connection string}`
   - `REACT_APP_OPENAI_API_KEY={your OpenAI API key}`
 5. Start the development server by running `npm start` in both the `client` and `server` directories.
 
