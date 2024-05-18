@@ -14,7 +14,7 @@ const Sidebar = ({ toggleSidebar, isSidebarVisible }) => {
     const fetchConversations = () => {
         if (userId) {
             // Fetch conversations from the backend only when userId is available
-            fetch(`http://localhost:3001/conversation/${userId}`)
+            fetch(`https://gpt-server.bennettlarue.com/conversation/${userId}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setConversationList(data);

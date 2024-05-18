@@ -72,7 +72,7 @@ const NewConversation = () => {
         try {
             // Send a POST request to create a new conversation
             const response = await fetch(
-                `http://localhost:3001/conversation/${userId}/create`,
+                `https://gpt-server.bennettlarue.com/conversation/${userId}/create`,
                 {
                     method: "POST",
                     headers: {
