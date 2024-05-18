@@ -1,13 +1,16 @@
 // Function to send messages to the chatbot and receive a reply
 export const getBotReply = async (messages) => {
     try {
-        const response = await fetch("http://localhost:3001/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(messages),
-        });
+        const response = await fetch(
+            "https://gpt-server.bennettlarue.com/chat",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(messages),
+            }
+        );
 
         if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -28,7 +31,7 @@ export const getBotReply = async (messages) => {
 export const getKeyWords = async (jsonData) => {
     try {
         const response = await fetch(
-            "http://localhost:3001/chat/findKeyWords",
+            "https://gpt-server.bennettlarue.com/chat/findKeyWords",
             {
                 method: "POST",
                 headers: {
@@ -57,7 +60,7 @@ export const updateConversation = async (
 ) => {
     try {
         const response = await fetch(
-            `http://localhost:3001/conversation/${userId}/${currentConversation._id}`,
+            `https://gpt-server.bennettlarue.com/conversation/${userId}/${currentConversation._id}`,
             {
                 method: "PUT",
                 headers: {
